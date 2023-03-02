@@ -1,8 +1,8 @@
-Question 1
-abadsfasd
+Add feature flags to JavaScript app
+Background on Feature Flags
+It takes two things to build software; teamwork and iteration. As software engineers, we dive into creating the unknown, sometimes for the first time. Core to innovative work is experimenting and prototyping as incremental success builds greater success. As changes near production, the experimentation that was appropriate in lower environments tapers off as the potential blast radius grows, e.g. if we get the experiment wrong, there’s a greater impact on a larger number of users.
 
-basdfas
-asdfdsf
+Feature Flags by definition allow blocks of code to be executed conditionally. Conditional statements are nothing new and have been around for several decades; the management of inventorying and toggling these conditional statements are newer and Feature Flag platforms are here. Feature Flags enable a concept called Progressive Delivery, or the incremental release of features. In this example we will walk you through your first Feature Flag creation and execution.
 
-asfdasdf
-d
+What You Need For Executing Your First Feature Flag
+Feature Flags have a close relationship with the code base since they surround/decorate conditional statements. You’ll need to include a Feature Flag SDK as a dependency then wire the Feature Flag client. To support this, the underlying code base and necessary dependencies to build/run the code base is needed. If this is your first time leveraging a Feature Flag, Google’s React Store is a great sample app to modify and use with Harness Feature Flags. This example will require a GitHub Account, an editor such as an IDE, a Harness Feature Flags Account, and the ability to run an NPM Install in your local or remote environment.

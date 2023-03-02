@@ -1,8 +1,14 @@
-Question 2
-abadsfasd
+Optimize Cloud Costs for Kubernetes
+Background on Cloud Costs
+As engineers, we are natural optimizers. Responding to users in more expeditious and efficient ways are core to optimizations. There are always tradeoffs between architecture and costs. With the rise of public cloud consumption with on the surface “nearly infinite” resources, this unlocks the next generation of distributed architecture. Though this is not without cost. From an engineering perspective, cost/billing data from the public cloud vendors depending on your organization might not be available to you or can take multiple billing cycles to be disseminated.
 
-basdfas
-asdfdsf
+Resources on the public cloud are certainly not free. Public cloud vendors not only bill for the core infrastructure but also depending on the services leveraged could be billing dimensions for the control/management planes and non-obvious dimensions such as network/data transmissions. When capacity planning for infrastructure, a natural inclination is to err on the side of caution and provision extra capacity in case of a spike.
 
-asfdasdf
-d
+Optimizing costs focuses on right sizing resource usage to match workload actuals. Coupled with finding more emphermial infrastructure e.g spot instances can reduce costs. Monitoring solutions typically monitor for when usage exceeds a certain threshold, but the inverse if usage is under utilized, traditional monitoring solutions might not alert on that. Harness Cloud Cost Management, or CCM, can help unlock insights based on usage in how to optimize costs. This example will connect Kubernetes workload(s) on a public cloud vendor to Harness CCM to start getting cost insights and recommendations.
+
+Get Started with Optimizing Your Kubernetes Cloud Costs
+By connecting your public cloud Kubernetes cluster to Harness, you can start to get recommendations on right-sizing the workloads that are running. This example is assuming there are some workloads running in the Kubernetes cluster.
+
+Overview
+
+To get actual costing data from your public cloud vendor, it is recommended to connect your public cloud billing API [usage report, billing export, etc] to Harness CCM. This is not a requirement. Harness CCM will poll usage data from the Kubernetes Metric Server which comes installed by default with GKE and AKS. If using EKS, installing the Kubernetes Metric Server is needed.
