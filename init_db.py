@@ -1,4 +1,7 @@
 import sqlite3
+import os
+
+directory = 'content'
 
 connection = sqlite3.connect('database.db')
 
@@ -8,13 +11,15 @@ with open('schema.sql') as f:
 
 cur = connection.cursor()
 
-cur.execute("INSERT INTO posts (title, content) VALUES (?, ?)",
-            ('First Post', 'Content for the first post')
-            )
+for filename in os.listdir(directory):
+    f = os.path.join(directory, filename)
+    # checking if it is a file
+    if os.path.isfile(f):
+        with open(f) as f1:
+            title = f1.readline().strip()
+            content = "\n".join([line.strip() for line in f1])
+            cur.execute("INSERT INTO posts (title, content) VALUES (?, ?)", (title, content))
 
-cur.execute("INSERT INTO posts (title, content) VALUES (?, ?)",
-            ('Second Post', 'Content for the second post')
-            )
 
 connection.commit()
 connection.close()
