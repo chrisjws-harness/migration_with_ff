@@ -1,0 +1,8 @@
+*
+!app.py
+!init_db.py
+!start.sh
+!schema.sql
+!static
+!templates
+!requirements.txt
