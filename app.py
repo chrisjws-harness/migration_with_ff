@@ -22,11 +22,16 @@ def get_post(post_id):
     return post
 
 
-@app.route('/')
-def index():
+def get_posts():
     conn = get_db_connection()
     posts = conn.execute('SELECT * FROM posts').fetchall()
     conn.close()
+    return posts
+
+
+@app.route('/')
+def index():
+    posts = get_posts()
     return render_template('index.html', posts=posts)
 
 
