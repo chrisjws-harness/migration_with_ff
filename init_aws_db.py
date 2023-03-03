@@ -40,9 +40,11 @@ cursor = conn.cursor()
 create_table_query = '''
 CREATE TABLE IF NOT EXISTS %s (
     id SERIAL PRIMARY KEY,
+    created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     title VARCHAR(255),
     content TEXT
 );
+
 ''' % table_name
 cursor.execute(create_table_query)
 conn.commit()

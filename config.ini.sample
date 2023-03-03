@@ -6,3 +6,5 @@ user = postgres
 password = mypassword
 table_name = posts
 
+[feature_flags]
+key = abc
