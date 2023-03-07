@@ -1,3 +1,8 @@
 .idea
 database.db
 config.ini
+env.sh
+.terraform.lock.hcl
+.terraform/
+terraform.tfstate
+terraform.tfstate.backup
