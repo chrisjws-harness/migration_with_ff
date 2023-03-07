@@ -33,6 +33,8 @@ except psycopg2.errors.lookup("42P04") as e:  # duplicate db, this is very uncle
 cursor.close()
 conn.close()
 
+print("Created database...")
+
 # Add table and contents to the DB
 conn = psycopg2.connect(**params, database=db)
 cursor = conn.cursor()
@@ -64,6 +66,5 @@ conn.commit()
 cursor.close()
 conn.close()
 
-
-
-
+print("Data loaded into database...")
+print("Done")
