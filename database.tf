@@ -22,7 +22,7 @@ resource "aws_db_instance" "postgres" {
   engine               = "postgres"
   engine_version       = "14.6"
   instance_class       = "db.t3.micro"
-  name                 = "harnessff"
+  db_name              = "harnessff"
   username             = "postgres"
   password             = "${var.database_password}"
   publicly_accessible = true

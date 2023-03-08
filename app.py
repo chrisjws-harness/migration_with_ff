@@ -25,10 +25,6 @@ api_key = config.get('feature_flags', 'key')
 cf = CfClient(api_key)
 target = Target(identifier="user1", name="user1")
 
-# while True:
-#     print(cf.bool_variation("migrate_to_rds", target, False))
-#     time.sleep(2)
-
 app = Flask(__name__)
 
 
