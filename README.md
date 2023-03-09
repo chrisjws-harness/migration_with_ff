@@ -69,10 +69,31 @@ Enter the name `migrate_to_rds` and click `Next`.
 On the following page leave all the default values as is and click `Save and Close`.
 
 
-## Build Application
+## Build & Run Application
 
 ### Build Image with Docker
 
 ```commandline
 docker build -t harnessff:1 .
 ```
+
+### Run Application
+
+```commandline
+ docker run -d -p 80:5000 --name harness_feature_flags harnessff:1
+```
+
+### Cutover Toggle
+
+Navigate to `http://localhost` in your browser of choice. You will see our content that is currently hosted in SQLLite.
+
+In the Harness UI, toggle your `migrate_to_rds` Feature flag.
+
+![new feature flag example](images/ff_toggle.png)
+
+Refresh the application page (`localhost`, not Harness itself) in your browser. You will now see `CLOUD!` appended in 
+front of the titles, showing the datasource has been cutover.
+
+![new feature flag example](images/cutover.png)
+
+
