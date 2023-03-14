@@ -1,0 +1,24 @@
+Publish an Allure Report to the Artifacts tab
+This tutorial provides an example pipeline that builds a Java Maven application and generates an Allure Report that you can view in the Harness UI.
+
+NOTE
+Artifact tab publishing is supported in the Kubernetes infrastructure only.
+
+Pipeline workflow
+This pipeline has five steps that do the following:
+
+Runs the Maven tests present in the project.
+
+Generates the Allure Report using the allure-results generated as part of step 1. The Allure tool is present in the solutis/allure:2.9.0 Docker image used as part of the step.
+
+Combines the Allure Report into a single HTML file.
+
+Viewing an Allure Report in a browser requires running a web server via the allure open command. But this won't allow viewing the report after the CI pipeline is complete.
+
+Use the allure-combine tool to convert the Allure Report into a single HTML file. Running allure-combine . inside allure-report generates the complete.html file. This step uses the shubham149/allure-combine:latest Docker image with the allure-combine tool present in it.
+
+Publishes the report to a Google Cloud Storage (GCS) bucket.
+
+Uses static web hosting in GCS to display the Allure Report on the Artifacts tab.
+
+The plugins/artifact-metadata-publisher plugin adds the input URLs to the Artifacts tab in the Harness UI.

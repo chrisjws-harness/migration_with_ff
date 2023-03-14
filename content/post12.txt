@@ -1,0 +1,38 @@
+Your First Chaos Experiment Run
+Welcome to Harness Chaos Engineering's first tutorial on running a chaos experiment. In this tutorial you'll be running a Chaos Experiment on Kubernetes for the first time!
+
+What is Chaos Engineering?
+Cloud Native applications are, by definition, highly distributed, elastic, resistant to failure and loosely coupled. That's easy to say, and even diagram. But how do we validate that our applications will perform as expected under different failure conditions? Enter Chaos Engineering!
+
+Chaos Engineering is the discipline of experimenting on a software system in order to build confidence in the system's capability to withstand turbulent and unexpected conditions. Chaos Engineering is a great tool to help us find weaknesses and misconfiguration in our services. It is relevant for all types of systems (including the so called legacy applications and infrastructure), and particularly important for Cloud Native applications, which, due to their distributed and elastic nature, inherently carry multiple points of failure.
+
+The standard chaos experimentation flow involves identifying the steady state of the system/application under test, hypothesizing around the impact a particular fault or failure would cause, injecting this fault in a controlled manner (with a pre-determined and often minimal "blast radius"), validating whether the hypothesis is proven and taking appropriate action in case if it is not, i.e., a weakness is found.
+
+Chaos Engineering Overview
+
+Harness Chaos Engineering (HCE) helps simplify the chaos engineering practices for your organization. To get started, create a new project or ask your administrator to add you to an existing project. Now, you can access the Chaos tab, where an overview of all the experiment runs can be observed.
+
+HCE Overview
+
+Add a Chaos Environment
+Next, we will create a new environment such that the chaos infrastructures can be added as part of it. Go to Environments page, and choose a New Environment. Add environment name, and optionally a description and tags. Select the environment type, Production or Non-Production. Finally, click on Create to add the new environment.
+
+Create New Environment
+
+Add a Chaos Infrastructure
+Once the environment is added, we can add chaos infrastructures to it. Here, we will add a Kubernetes infrastructure so that we can inject Kubernetes resource faults. Choose New Chaos Infrastructure.
+
+New Chaos Infrastructure
+
+Select On New Infrastructures and select Continue. Add a name to your chaos infrastructure and optionally a description and tags. Select Next.
+
+After that, choose the mode of installation for Harness delegate. As a quick primer, Harness delegate is a remote agent for accessing your Kubernetes cluster resources and injecting faults into them as part of a chaos experiment. The Cluster Wide installation mode allows you to target resources across all the namespaces in your cluster while Namespace Mode installation restricts chaos injection to only the namespace in which the delegate will be installed. Choose Namespace mode installation mode. By default, the delegate will install in the hce namespace, but you can change it. Then, select Done.
+
+Configure Chaos Infrastructure
+
+Lastly, provided that you have access to your Kubernetes cluster via kubectl, deploy your chaos infrastructure by executing the given commands, then downloading and applying the given manifest using your terminal. Once done, choose Next.
+
+Deploy Chaos Infrastructure
+
+It will take a while for the delegate to setup in the k8s cluster. Head to the created environment and as soon as the delegate is ready, the connection status should get reflected as CONNECTED.
+

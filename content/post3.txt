@@ -1,0 +1,19 @@
+Deploy a Helm Chart using Harness GitOps for Argo CD
+GitOps extends practices of Source Code Management into infrastructure and deployment of applications. Argo CD is the most popular project in this space. Even if you are new to GitOps and/or Argo CD, you have nothing to worry since Harness makes it really easy to get started. First you will need to sign up for a Harness Account. Harness works on a concept of Projects. The default project created when signing up for Harness is fine for the example.
+
+Overview
+
+Harness will install Argo CD on your behalf and connect that Argo CD instance to Harness. All you need is a Kubernetes cluster.
+
+Navigate to Deployments -> GitOps -> Settings -> GitOps Agents
+
+New GitOps Agent
+
+Then + New GitOps Agent. Select “No” for an existing Argo CD instance then click Start.
+
+No Existing Argo
+
+Click Start. Can name and provide an existing Namespace on the cluster for the installation.
+
+Name: harness-managed-argocd
+Namespace: default

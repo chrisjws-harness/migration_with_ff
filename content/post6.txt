@@ -1,0 +1,30 @@
+Build Go Application Containers
+Objectives
+At the end of this tutorial you will learn,
+
+ How to register for a Harness Account and activate your Free Tier
+ What is a Project and how to configure one on your Harness Account
+ What are Secrets and how to add them to your Project
+ What are Connectors and how to add a Docker Registry Connector to your Project
+ How to build Go application container image without using a Dockerfile
+Pre-requisites
+Before you get started with the tutorial make sure you have the following accounts,credentials and tools,
+
+A GitHub account, where you may need to fork the tutorial sources.
+A Docker Registry account, e.g DockerHub, Quay.io
+Drone CLI to build the application locally.
+Docker Desktop
+Overview
+As part of this tutorial we will be building a simple Go REST API called fruits-api. The application uses a RDBMS(PostgreSQL or MySQL) or NOSQL(MongoDB) to store the fruits data.
+
+Tutorial Source
+The complete demo source is available here https://github.com/harness-apps/go-fruits-api, fork the repository on to your GitHub account. For rest of the tutorial we will refer to this repository as $TUTORIAL_GIT_REPO.
+
+Building Application Locally
+Languages and package formats have build specific tools. One of the core problems that a developer might face is to install the right version of those tools on their local machines. This approach has potential pit falls and leads to Works only on my machine scenarios.
+
+Docker containers solved this problem and helped us to have clean environment that had right set of tools, encouraging the DevOps best practices right from the start. This approach also helps to identify the potential issues with the application at development stage.
+
+Drone by Harness is an open source CI platform that can help building and testing on your local machines without the need of installing the tools as required by the programming languages.
+
+But before we start to build the application, we need place to store the artifacts of the build i.e. container images. In container/Cloud Native world this is called a Container Registry e.g Docker Hub, Quay.io, Harbor etc.,

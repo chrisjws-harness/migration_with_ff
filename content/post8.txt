@@ -1,0 +1,31 @@
+Run LocalStack as a Background Step
+Background steps are useful for running services that need to run for the entire lifetime of a Build stage. This tutorial shows how to run LocalStack as a Background step in a Harness CI pipeline. LocalStack is software that emulates cloud services (such as AWS) when developing locally, or for testing in continuous integration pipelines.
+
+TIP
+If you don't have a Harness account yet, you can create one for free at app.harness.io
+
+Create Your Pipeline
+Create a new pipeline in Harness CI.
+Click Add Stage and select Build. Give your stage a name, optionally configure the repository to be cloned, then click Set Up Stage.
+Select "Cloud" in the Infrastructure tab.
+Add Background Step
+This will run the LocalStack Docker image as a Background step in your pipeline.
+
+In the Execution tab of your pipeline stage, click Add Step. The Step Library dialogue window should appear, select the Background step.
+Enter "localstack" in the Name field.
+Expand the Additional Configuration section, click the Container Registry field and either select an existing Docker Hub connector, or create one.
+Enter the desired LocalStack Docker image in the Image field (for example, localstack/localstack:1.2.0).
+If you have a LocalStack API key, add a LOCALSTACK_API_KEY environment variable in the Environment Variables section.
+Click Apply Changes.
+Add Step
+This will add a step to ensure the LocalStack service is healthy. The step will run the curl command to poll the LocalStack service's /health endpoint until it returns successfully. This ensures that LocalStack is ready to receive traffic before the pipeline continues.
+
+In the Execution tab of your pipeline stage, click Add Step then select Run.
+Enter "localstack health" in the Name field.
+Enter the following command in the Command field.
+until curl --fail --silent --max-time 1 http://localstack:4566/health; do sleep 2; done
+
+
+Expand the Optional Configuration section, click the Container Registry field and select your Docker Hub connector.
+Enter curlimages/curl:7.83.1 in the Images field.
+Click Apply Changes.

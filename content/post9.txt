@@ -1,0 +1,54 @@
+Build and sign application containers
+At the end of this tutorial you will learn how to sign a container image using cosign.
+
+Prerequisites
+Before you get started with the tutorial make sure you have completed the Build Go Application Containers CI Pipeline.
+
+Ensure the following tools are installed locally:
+
+Crane
+Cosign
+Overview
+As part of the Build Go Application Containers CI Pipeline tutorial we saw how to build a Go application container image using a CI pipeline. In this tutorial we improve the pipeline to sign the container image and ensure its authenticity. Please read History and Research to learn why we need to secure the software supply chain.
+
+Generate signing keys
+Assuming you have the fork of https://github.com/harness-apps/go-fruits-api, navigate to the folder where it was cloned. Refer to this folder as $TUTORIAL_HOME.
+cd $TUTORIAL_HOME
+
+Generate a random password and store it in a variable called $COSIGN_PASSWORD,
+export COSIGN_PASSWORD=$(openssl rand -hex 16)
+
+TIP
+Make sure to note down the $COSIGN_PASSWORD as it might be needed later.
+
+echo $COSIGN_PASSWORD
+
+Once you have generated the password, generate the key pair that we will use to sign.
+cosign generate-key-pair
+
+The command generates the cosign.key and cosign.pub under $TUTORIAL_HOME.
+
+INFO
+Make sure the cosign.key, cosign.pub are excluded from your SCM. In other words, add them to .gitignore
+
+Create signing secrets
+Navigate to Project Setup, and then select Secrets.
+Project Secrets
+
+Select + New Secret , and then select Text.
+New Text Secret
+
+Set the Secret Name to be cosign_password, and then fill your cosign private key password $COSIGN_PASSSWORD as Secret Value.
+Cosign Password
+
+Select + New Secret, and then select File.
+New File Secret
+
+Fill the details for the secret cosign_private_key as shown.
+Cosign Private Key Secret
+
+For the Select File, browse and pick the cosign.key from the $TUTORIAL_HOME.
+
+Repeat the same process of creating another __File__ secret to store the cosign public key, this time using the file cosign.pub from the $TUTORIAL_HOME.
+
+Fill the details for the secret cosign_public_key as shown.

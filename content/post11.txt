@@ -1,0 +1,13 @@
+Scan a NodeJS App for security vulnerabilities
+DevSecOps Background
+The DevSecOps movement is all about shifting left; empowering the development teams to make more hygienic decisions. With the pace and velocity that engineering teams are creating changes/features, in days gone by, security could be seen as an afterthought in the SDLC. Today, modern teams and organizations try to disseminate application security expertise throughout the development pipeline and security decisions and posture are being educated upfront during development.
+
+There are a few categories of application centric security tools out there. The first is SAST or Static Application Security Testing. SAST tools typically inspect application code and configuration for known good and bad patterns. The second type, DAST or Dynamic Application Security Testing, tool will try to perform an exploit on your behalf. DAST tools typically run against running applications, having the ability to take into compensating controls of the infrastructure. Third are RASPs or Runtime Application Self Protection Platforms are dependencies deployed with your application which will analyze calls in and out of the application e.g method calls.
+
+Setting Up Your First Automatable Security Scan
+In this example, we will be using OWASP Dependency Check (SAST tool) which will match project dependencies against vulnerability databases such as the National Vulnerability Database (NVD). We will be scanning against OWASP’s own NodeGoat project, which is a purpose-built vulnerable Node application to teach security concepts. You can replace NodeGoat with an application of your choice.
+
+Overview
+
+Install Delegate
+Harness will facilitate the running of the security scan against your codebase. A workload runner, e.g. a Harness Delegate will need to be installed into a Kubernetes cluster of your choice. The first step is to request a Harness Security Test Orchestration Account and install a Harness Delegate.

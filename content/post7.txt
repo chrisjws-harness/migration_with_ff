@@ -1,0 +1,29 @@
+Build Rust application containers
+This tutorial shows how you can use a Harness Continuous Integration (CI) pipeline to build a multi-architecture Rust application container image and push it to a Docker container registry.
+
+You'll learn how to:
+
+ Create projects in your Harness account.
+ Add secrets to projects.
+ Add a Docker Registry Connector to a project.
+ Use a CI pipeline to build and push a multi-architecture Rust application container image.
+In this tutorial, you'll use Rust to build a simple REST API called greeter-api.
+
+Prerequisites
+In addition to a Harness account, you need the following accounts and tools:
+
+A GitHub account where you can fork the tutorial repo
+A Docker registry account, such as DockerHub or Quay.io
+Drone CLI to build the application locally
+Docker Desktop
+TIP
+If you don't have a Harness account yet, you can create one for free at app.harness.io
+
+Configure the container registry
+To avoid scenarios where builds only work on specific machines, you can use Docker containers to provide clean environments that run specified toolsets. This is a DevOps best practice that helps identify potential problems throughout development.
+
+Drone by Harness is an open source CI platform that helps developers build and test on local machines without manually installing different tools for each language.
+
+Before building the application, you need a location to store build artifacts, which are also known as container images. Externally-hosted locations are ideal because they are more accessible. Container image storage spaces are called Container Registries. Examples of container registry providers include Docker Hub, Quay.io, Harbor, Google Artifact Registry (GAR), and Elastic Container Registry (ECR).
+
+This tutorial pushes a fruits-api application container image to a DockerHub repository named fruits-api. You can use another container registry if you prefer.
