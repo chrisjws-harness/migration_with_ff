@@ -2,7 +2,7 @@
 import psycopg2
 from psycopg2.extras import DictCursor
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import sqlite3
 from werkzeug.exceptions import abort
 from featureflags.client import CfClient
@@ -23,7 +23,6 @@ params = {
 
 api_key = config.get('feature_flags', 'key')
 cf = CfClient(api_key)
-target = Target(identifier="user1", name="user1")
 
 app = Flask(__name__)
 
@@ -35,14 +34,20 @@ def get_db_connection_cloud():
 
 def get_post_cloud(post_id):
     conn = get_db_connection_cloud()
-    cur = conn.cursor()
-    cur.execute("SELECT * FROM %s" % table_name)
+    cur = conn.cursor(cursor_factory=DictCursor)
+    cur.execute("SELECT * FROM %s WHERE id=%s" % (table_name, post_id))
     rows = cur.fetchall()
+    results = []
+    for row in rows:
+        result = {}
+        for key, value in row.items():
+            result[key] = value
+        results.append(result)
     cur.close()
     conn.close()
-    if post is None:
+    if len(results) == 0:
         abort(404)
-    return post
+    return results[0]
 
 
 def get_posts_cloud():
@@ -86,6 +91,11 @@ def get_posts():
 
 @app.route('/')
 def index():
+    if bool(request.headers.get("iamatester")):
+        target = Target(identifier="internaltester", name="internaltester")
+    else:
+        target = Target(identifier="user1", name="user1")
+
     rds = cf.bool_variation("migrate_to_rds", target, False)
     if rds:
         posts = get_posts_cloud()
@@ -97,8 +107,20 @@ def index():
 
 @app.route('/<int:post_id>')
 def post(post_id):
-    post = get_post(post_id)
-    return render_template('post.html', post=post)
+    if bool(request.headers.get("iamatester")):
+        target = Target(identifier="internaltester", name="internaltester")
+    else:
+        target = Target(identifier="user1", name="user1")
+    rds = cf.bool_variation("migrate_to_rds", target, False)
+    if rds:
+        post_content = get_post_cloud(post_id)
+    else:
+        post_content = get_post(post_id)
+
+
+    #post = get_post(post_id)
+    print(post_content)
+    return render_template('post.html', post=post_content)
 
 
 # main driver function

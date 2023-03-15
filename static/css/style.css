@@ -8,3 +8,12 @@ h1 {
 pre {
     white-space: pre-wrap;
 }
+
+h2 {
+    color: black;
+    text-decoration:underline;
+}
+
+.badge {
+    background-color: black;
+}
